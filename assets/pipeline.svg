@@ -1,0 +1,49 @@
+<svg viewBox="0 0 680 360" width="100%" role="img" xmlns="http://www.w3.org/2000/svg">
+  <title>BrainFuck 编译器整体架构</title>
+  <desc>BrainFuck 源码经过语义保持优化、LLVM IR 生成、静态链接，产出多架构原生可执行文件</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+  <text font-family="sans-serif" x="40" y="36" font-size="14" font-weight="500" fill="#26215C">前端：源码解析与语义保持优化</text>
+  <text font-family="sans-serif" x="40" y="56" font-size="12" fill="#888780">语法校验 · 窥孔改写 · 解释器与编译后端共用同一指令序列</text>
+
+  <g>
+    <rect x="40" y="80" width="290" height="56" rx="8" stroke="#534AB7" stroke-width="0.5" fill="#EEEDFE"/>
+    <text font-family="sans-serif" x="185" y="102" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#3C3489">窥孔优化器</text>
+    <text font-family="sans-serif" x="185" y="120" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#534AB7">模 256 逆元搬运 · 死循环消除</text>
+  </g>
+  <g>
+    <rect x="390" y="80" width="250" height="56" rx="8" stroke="#185FA5" stroke-width="0.5" fill="#E6F1FB"/>
+    <text font-family="sans-serif" x="515" y="102" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#0C447C">LLVM IR 生成器</text>
+    <text font-family="sans-serif" x="515" y="120" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#185FA5">文本 IR，交由 clang -O3 继续优化</text>
+  </g>
+  <path d="M335 108 L385 108" fill="none" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <g>
+    <rect x="40" y="170" width="180" height="56" rx="8" stroke="#993C1D" stroke-width="0.5" fill="#FAECE7"/>
+    <text font-family="sans-serif" x="130" y="192" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#712B13">freestanding 运行时</text>
+    <text font-family="sans-serif" x="130" y="210" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#993C1D">内联汇编实现裸系统调用</text>
+  </g>
+  <g>
+    <rect x="280" y="170" width="180" height="56" rx="8" stroke="#0F6E56" stroke-width="0.5" fill="#E1F5EE"/>
+    <text font-family="sans-serif" x="370" y="192" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#085041">交叉编译</text>
+    <text font-family="sans-serif" x="370" y="210" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#0F6E56">x86_64 / aarch64 / riscv64</text>
+  </g>
+  <g>
+    <rect x="520" y="170" width="120" height="56" rx="8" stroke="#854F0B" stroke-width="0.5" fill="#FAEEDA"/>
+    <text font-family="sans-serif" x="580" y="192" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#633806">静态链接</text>
+    <text font-family="sans-serif" x="580" y="210" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#854F0B">无需目标平台 libc</text>
+  </g>
+  <path d="M515 136 L135 165" fill="none" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M220 198 L275 198" fill="none" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M460 198 L515 198" fill="none" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <g>
+    <rect x="40" y="262" width="600" height="56" rx="8" stroke="#3B6D11" stroke-width="0.5" fill="#EAF3DE"/>
+    <text font-family="sans-serif" x="340" y="284" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#27500A">产物：目标平台原生可执行文件</text>
+    <text font-family="sans-serif" x="340" y="302" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#3B6D11">单文件静态链接，可直接部署于 x86_64 / ARM64 / RISC-V 服务器与嵌入式设备</text>
+  </g>
+  <path d="M580 230 L580 246 L340 246 L340 258" fill="none" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow)"/>
+</svg>
